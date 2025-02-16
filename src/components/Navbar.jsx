@@ -1,44 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
  import axios from "axios";
 
 import { Link } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
-const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
- const handleLogout = () => {
-   axios
-     .post(
-       `${BASE_URL}/user/logout`,
-       {},
-       { withCredentials: true }
-     )
-     .then(() => {
-       setIsLoggedIn(false);
-       console.log("User logged out");
-     })
-     .catch((error) => console.error("Logout failed:", error));
- };
-
-
-  useEffect(()=>{
-    fetch(`${BASE_URL}/user/checkAuth`, { credentials: "include" })
-      .then((res) => res.json())
-      .then((data) => {
-        setIsLoggedIn(data.isAuthenticated);
-        console.log("User is loggedIn checAuth", data);
+const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
+ 
+  const handleLogout = () => {
+    axios
+      .post(`${BASE_URL}/user/logout`, {}, { withCredentials: true })
+      .then(() => {
+        setIsLoggedIn(false);
+        console.log("User logged out");
       })
-      .catch(() => setIsLoggedIn(false));
-  },[]);
+      .catch((error) => console.error("Logout failed:", error));
+  };
+
+ 
   return (
     <div>
       <div className="navbar-container">
         <h1 style={{ color: "#fff" }}>Quizzy</h1>
         <ul className="nav-links">
-          
           {!isLoggedIn ? (
             <>
               <li>
@@ -54,13 +38,15 @@ const Navbar = () => {
             </>
           ) : (
             <li>
-              <button className="btn btn-secondary" onClick={handleLogout}>Logout</button>
+              <button className="btn btn-secondary" onClick={handleLogout}>
+                Logout
+              </button>
             </li>
           )}
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default Navbar

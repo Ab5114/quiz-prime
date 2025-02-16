@@ -4,10 +4,10 @@ import React from 'react'
 import "../styles/style.css"
 import Navbar from './Navbar';
  
-const Home = () => {
+const Home = ({isLoggedIn , setIsLoggedIn}) => {
   return (
     <div className="Home">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <div className="intro-container">
         <h2>Welcome to Quizzy</h2>
@@ -21,7 +21,6 @@ const Home = () => {
           <button className="my-quiz">My Quizzes</button>
         </Link>
       </div>
-     
     </div>
   );
 }

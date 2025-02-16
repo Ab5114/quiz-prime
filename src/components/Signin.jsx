@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
-const Signin = () => {
+const Signin = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
 
    const [name, setName] = useState("");
@@ -25,9 +25,12 @@ const Signin = () => {
          }
        );
        console.log("Signin successful:", response.data);
+       setIsLoggedIn(true);
        alert("Signin successful");
-       navigate(-1);
-     } catch (error) {
+       navigate("../");
+
+     } 
+     catch (error) {
        console.error("Signin error:", error.response?.data || error.message);
 alert("Invalid email or paswword");
      }

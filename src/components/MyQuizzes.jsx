@@ -4,22 +4,32 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/MyQuizzes.css";
+import Loading from "./Loading.jsx"
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 const MyQuizzes = () => {
   const [quizzes, setQuizzes] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get(`${BASE_URL}/user/quizzes`, { withCredentials: true }) // Ensure cookies are sent
-      .then((response) => {
-        setQuizzes(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching quizzes:", error);
+useEffect(() => {
+  const fetchQuizzes = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${BASE_URL}/user/quizzes`, {
+        withCredentials: true,
       });
-  }, []);
+      setQuizzes(response.data);
+    } catch (error) {
+      console.error("Error fetching quizzes:", error);
+    }
+    finally{
+      setLoading(false);
+    }
+  };
+
+  fetchQuizzes();
+}, []);
 
 
 
@@ -30,7 +40,7 @@ const MyQuizzes = () => {
           withCredentials: true,
         })
         .then(() => {
-          setQuizzes(quizzes.filter((quiz) => quiz._id !== quizId)); // Remove deleted quiz from state
+          setQuizzes(quizzes.filter((quiz) => quiz._id !== quizId));  
           setTimeout(() => {
             alert("Quiz deleted successfully!");
           }, 1000);
@@ -47,7 +57,9 @@ const MyQuizzes = () => {
 
   return (
     <>
-      <div className="quizzes-list">
+      {loading && <Loading/>}
+
+      {!loading && <div className="quizzes-list">
         <h2 className="myquizzes">My Quizzes</h2>{" "}
         <Link to="/user/create-quiz">
           {" "}
@@ -61,27 +73,33 @@ const MyQuizzes = () => {
               <div key={quiz._id} className="quiz-card">
                 <h3 className="title">{quiz.title}</h3>
                 <p className="descrip">{quiz.description}</p>
+
                 <Link to={`/quiz-questions`} state={{ quiz }}>
                   <button className="edit-quiz">Start Quiz</button>
                 </Link>
+
                 <p className="time">
                   Created: {new Date(quiz.created_at).toLocaleDateString()}
                 </p>
-                <div style={{display:"flex" ,justifyContent:"space-between"}}>
-                    <Link to="/user/edit-quiz" state={{quiz}}>  <button className="editbtn">Edit Quiz</button></Link>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <Link to="/user/edit-quiz" state={{ quiz }}>
+                    {" "}
+                    <button className="editbtn">Edit Quiz</button>
+                  </Link>
                   <button
                     className="delete-quiz"
                     onClick={() => handleDelete(quiz._id)}
                   >
                     Delete
                   </button>
-                  
                 </div>
               </div>
             ))
           )}
         </div>
-      </div>
+      </div>}
     </>
   );
 };
