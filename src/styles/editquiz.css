@@ -1,0 +1,110 @@
+ @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.edit-quiz-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+/* Title */
+.edit-quiz-title {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Form styling */
+.edit-quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Labels */
+.edit-quiz-label {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Inputs */
+.edit-quiz-input,
+.edit-quiz-textarea,
+.edit-quiz-question-input,
+.edit-quiz-option-input,
+.edit-quiz-correct-index {
+ flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border 0.3s ease-in-out;
+  margin-block: 8px;
+}
+
+.edit-quiz-input:focus,
+.edit-quiz-textarea:focus,
+.edit-quiz-question-input:focus,
+.edit-quiz-option-input:focus,
+.edit-quiz-correct-index:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Question styling */
+.edit-quiz-question {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+}
+
+/* Buttons */
+.edit-quiz-add-btn,
+.edit-quiz-delete-btn,
+.edit-quiz-submit-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.edit-quiz-add-btn {
+  background: #2ecc71;
+  color: white;
+}
+
+.edit-quiz-delete-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.edit-quiz-submit-btn {
+  background: #3498db;
+  color: white;
+}
+
+.edit-quiz-add-btn:hover,
+.edit-quiz-delete-btn:hover,
+.edit-quiz-submit-btn:hover {
+  opacity: 0.8;
+}
+
+
+.edit-quiz-delete-option{
+ background-color: #f9f9f9;  
+  padding: 5px; 
+  border-radius: 5px;  
+   cursor: pointer; /* Change cursor to pointer */
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+ 
+}

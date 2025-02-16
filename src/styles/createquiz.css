@@ -1,0 +1,107 @@
+.create-quiz-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.question-block {
+  background: #f8f9fa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+h3, h4 {
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.option-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.option-group input {
+  flex: 1;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Primary Buttons */
+button[type="submit"] {
+  background: #007bff;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+/* Add Question and Option Buttons */
+.add-question-btn, .add-option-btn {
+  background: #28a745;
+  color: white;
+}
+
+.add-question-btn:hover, .add-option-btn:hover {
+  background: #218838;
+}
+
+/* Remove Option Button */
+.remove-option-btn {
+  background: #dc3545;
+  color: white;
+  padding: 8px;
+}
+
+.remove-option-btn:hover {
+  background: #c82333;
+}
