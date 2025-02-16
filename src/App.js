@@ -1,8 +1,5 @@
  import Home from "./components/Home";
 import MyQuizzes from "./components/MyQuizzes";
-
-
-
 import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -17,6 +14,7 @@ import Signin from "./components/Signin";
 import CreateQuiz from "./components/CreateQuiz";
 import EditQuiz from "./components/EditQuiz";
 import axios from "axios";
+import CreateLoader from "./components/CreateLoader";
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -43,6 +41,7 @@ const BASE_URL = process.env.REACT_APP_BACKEND_URL;
      }, []);  
      return (
        <>
+      
          <Router>
            <Routes>
              <Route

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/MyQuizzes.css";
 import Loading from "./Loading.jsx"
-
+ 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 const MyQuizzes = () => {
@@ -57,49 +57,50 @@ useEffect(() => {
 
   return (
     <>
-      {loading && <Loading/>}
+      {loading && <Loading />}
+       {!loading && (
+        <div className="quizzes-list">
+          <h2 className="myquizzes">My Quizzes</h2>{" "}
+          <Link to="/user/create-quiz">
+            {" "}
+            <button className="add-quiz">Create New Quiz</button>
+          </Link>
+          <div className="quiz-container">
+            {quizzes.length === 0 ? (
+              <p className="no-quizzes">No quizzes found. Create one now!</p>
+            ) : (
+              quizzes.map((quiz) => (
+                <div key={quiz._id} className="quiz-card">
+                  <h3 className="title">{quiz.title}</h3>
+                  <p className="descrip">{quiz.description}</p>
 
-      {!loading && <div className="quizzes-list">
-        <h2 className="myquizzes">My Quizzes</h2>{" "}
-        <Link to="/user/create-quiz">
-          {" "}
-          <button className="add-quiz">Create New Quiz</button>
-        </Link>
-        <div className="quiz-container">
-          {quizzes.length === 0 ? (
-            <p className="no-quizzes">No quizzes found. Create one now!</p>
-          ) : (
-            quizzes.map((quiz) => (
-              <div key={quiz._id} className="quiz-card">
-                <h3 className="title">{quiz.title}</h3>
-                <p className="descrip">{quiz.description}</p>
-
-                <Link to={`/quiz-questions`} state={{ quiz }}>
-                  <button className="edit-quiz">Start Quiz</button>
-                </Link>
-
-                <p className="time">
-                  Created: {new Date(quiz.created_at).toLocaleDateString()}
-                </p>
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <Link to="/user/edit-quiz" state={{ quiz }}>
-                    {" "}
-                    <button className="editbtn">Edit Quiz</button>
+                  <Link to={`/quiz-questions`} state={{ quiz }}>
+                    <button className="edit-quiz">Start Quiz</button>
                   </Link>
-                  <button
-                    className="delete-quiz"
-                    onClick={() => handleDelete(quiz._id)}
+
+                  <p className="time">
+                    Created: {new Date(quiz.created_at).toLocaleDateString()}
+                  </p>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    Delete
-                  </button>
+                    <Link to="/user/edit-quiz" state={{ quiz }}>
+                      {" "}
+                      <button className="editbtn">Edit Quiz</button>
+                    </Link>
+                    <button
+                      className="delete-quiz"
+                      onClick={() => handleDelete(quiz._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
-      </div>}
+      )}
     </>
   );
 };
