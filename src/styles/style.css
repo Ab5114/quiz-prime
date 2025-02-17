@@ -11,15 +11,14 @@
     align-items: center;
 
 }
-/* Navbar Styling */
-.navbar-container {
+ .navbar-container {
     position: absolute;
     top: 0;
     left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2c3e50; /* Dark Blue */
+  background-color: #2c3e50; 
   padding: 25px 30px;
     width: 100%;
   color: white;
@@ -27,14 +26,12 @@
    
 }
 
-/* Brand Name */
-.navbar-container h1 {
+ .navbar-container h1 {
   font-size: 24px;
   font-weight: bold;
 }
 
-/* Navigation Links */
-.nav-links {
+ .nav-links {
   list-style: none;
   display: flex;
   gap: 35px;
@@ -69,14 +66,15 @@
 @media (max-width: 768px) {
   .navbar-container {
     flex-direction: column;
-    text-align: center;
+    gap:30px;
+     
   }
 
   .nav-links  {
     flex-direction: column;
-    gap: 50px;
-    margin-top: 10px;
-  }
+    gap: 45px;
+    align-items: center;
+   }
 }
 
 
