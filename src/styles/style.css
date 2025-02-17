@@ -1,5 +1,4 @@
-/* Reset styles */
-* {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -41,8 +40,7 @@
   display: inline;
 }
 
-/* Buttons */
-.nav-links a {
+ .nav-links a {
   text-decoration: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -50,20 +48,17 @@
   font-weight: bold;
 }
 
-/* Primary Button */
-.btn-secondary {
-  background-color: #3498db; /* Blue */
+ .btn-secondary {
+  background-color: #3498db;  
   color: white;
   border: none;
 }
 
-/* Hover Effect */
-.btn-secondary:hover {
-  background-color: #2980b9; /* Darker Blue */
+ .btn-secondary:hover {
+  background-color: #2980b9;  
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
   .navbar-container {
     flex-direction: column;
     gap:30px;
@@ -78,8 +73,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-.intro-container {
+ .intro-container {
   text-align: center;
   background-color: #f4f4f4;
   padding: 40px 20px;

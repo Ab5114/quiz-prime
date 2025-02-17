@@ -9,29 +9,26 @@
   background: #fff;
 }
 
-/* Title */
-.edit-quiz-title {
+ .edit-quiz-title {
   text-align: center;
   font-size: 24px;
   color: #333;
   margin-bottom: 15px;
 }
 
-/* Form styling */
-.edit-quiz-form {
+ .edit-quiz-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Labels */
+/*   */
 .edit-quiz-label {
   font-weight: bold;
   color: #555;
 }
 
-/* Inputs */
-.edit-quiz-input,
+ .edit-quiz-input,
 .edit-quiz-textarea,
 .edit-quiz-question-input,
 .edit-quiz-option-input,
@@ -55,8 +52,7 @@
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
-/* Question styling */
-.edit-quiz-question {
+ .edit-quiz-question {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -102,7 +98,7 @@
  background-color: #f9f9f9;  
   padding: 5px; 
   border-radius: 5px;  
-   cursor: pointer; /* Change cursor to pointer */
+   cursor: pointer;  
   display: flex;  
   align-items: center;  
   justify-content: center;  

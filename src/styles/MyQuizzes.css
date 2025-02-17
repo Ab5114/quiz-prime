@@ -13,8 +13,7 @@
   margin: 15px 0 25px;
 }
 
-/* Add Quiz Button */
-.add-quiz {
+ .add-quiz {
   background-color: #3498db;
   color: white;
   font-size: 16px;
@@ -59,13 +58,12 @@ a {
 
 @media (max-width: 480px) {
   .quiz-container {
-    padding: 10px; /* Minimal padding for small screens */
-    gap: 10px; /* Reduce spacing */
+    padding: 10px; 
+    gap: 10px;  
   }
 }
 
-/* ======= Quiz Card Styling ======= */
-.quiz-card {
+ .quiz-card {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -73,33 +71,29 @@ a {
   width: 320px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   text-align: center;
-  border-left: 5px solid #3498db; /* Accent Left Border */
+  border-left: 5px solid #3498db;  
   position: relative;
   overflow: hidden;
 }
 
-/* Hover Effect */
-.quiz-card:hover {
+ .quiz-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Title */
-.title {
+ .title {
   font-size: 20px;
   color: #2c3e50;
   margin-bottom: 10px;
 }
 
-/* Description */
-.descrip {
+ .descrip {
   font-size: 14px;
   color: #666;
   margin-bottom: 10px;
 }
 
-/* Time Information */
-.time {
+ .time {
   font-size: 12px;
   color: #888;
   font-style: italic;
