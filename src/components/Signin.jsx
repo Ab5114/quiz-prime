@@ -24,12 +24,12 @@ const Signin = ({setIsLoggedIn}) => {
            headers: { "Content-Type": "application/json" },
          }
        );
-       if (response.status === 200) {
+    
          console.log("Signin successful:", response.data);
          setIsLoggedIn(true);  
          alert("Signin successful");
          navigate("/"); 
-       }
+       
 
      } 
      catch (error) {

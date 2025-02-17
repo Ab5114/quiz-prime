@@ -29,6 +29,7 @@ const Signup = () => {
          console.log("Signup successful:", response.data);
        } catch (error) {
          console.error("Signup error:", error.response?.data || error.message);
+        
        }
      };
 

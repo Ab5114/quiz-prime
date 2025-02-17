@@ -13,9 +13,8 @@ const CreateQuiz = () => {
   const [loading,setLoading]=useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [questions, setQuestions] = useState([
-    { question_text: "", options: ["", ""], correct_index: 0 },
-  ]);
+  const [questions, setQuestions] = useState([]);
+   const [error, setError] = useState("");
 
   const handleAddQuestion = () => {
     setQuestions([
@@ -43,6 +42,22 @@ const CreateQuiz = () => {
     console.log("title of quiz is ",title);
     console.log("desc of the quiz is ",description);
     console.log("questions of the quiz are",questions);
+
+
+      if (title.trim() === "" || description.trim() === "") {
+        setError("Title and Description cannot be empty.");
+        return;
+      }
+
+       for (const question of questions) {
+        if (
+          question.question_text.trim() === "" ||
+          question.options.some((opt) => opt.trim() === "")
+        ) {
+          setError("All questions and options must be filled out properly.");
+          return;
+        }
+      }
 
 
     try {
@@ -78,107 +93,111 @@ const CreateQuiz = () => {
 
   return (
     <>
-      {loading && <CreateLoader/>}
-      {!loading && <div className="create-quiz-container">
-        <h2>Create a Quiz</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Title:</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-  
-          <label>Description:</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-  
-          <h3>Questions</h3>
-          {questions.map((q, questionIndex) => (
-            <div key={questionIndex} className="question-block">
-              <input
-                type="text"
-                placeholder="Question Text"
-                value={q.question_text}
-                onChange={(e) => {
-                  const newQuestions = [...questions];
-                  newQuestions[questionIndex].question_text = e.target.value;
-                  setQuestions(newQuestions);
-                }}
-                required
-              />
-  
-              <h4>Options</h4>
-              {q.options.map((option, optionIndex) => (
-                <div key={optionIndex} className="option-group">
-                  <input
-                    type="text"
-                    placeholder={`Option ${optionIndex + 1}`}
-                    value={option}
-                    onChange={(e) =>
-                      handleOptionChange(
-                        questionIndex,
-                        optionIndex,
-                        e.target.value
-                      )
-                    }
-                    required
-                  />
-                  {optionIndex >= 2 && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const newQuestions = [...questions];
-                        newQuestions[questionIndex].options.splice(
+      {loading && <CreateLoader />}
+      {!loading && (
+        <div className="create-quiz-container">
+          <h2>Create a Quiz</h2>
+          <form onSubmit={handleSubmit}>
+            <label>Title:</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => {setTitle(e.target.value); setError("");}}
+              
+              required
+            />
+
+            <label>Description:</label>
+            <textarea
+              value={description}
+              onChange={(e) => {setDescription(e.target.value);setError("");}}
+              required
+            />
+
+            <h3>Questions</h3>
+            {questions.map((q, questionIndex) => (
+              <div key={questionIndex} className="question-block">
+                <input
+                  type="text"
+                  placeholder="Question Text"
+                  value={q.question_text}
+                  onChange={(e) => {
+                    const newQuestions = [...questions];
+                    newQuestions[questionIndex].question_text = e.target.value;
+                    setQuestions(newQuestions);
+                    setError(""); 
+                  }}
+                />
+
+                <h4>Options</h4>
+                {q.options.map((option, optionIndex) => (
+                  <div key={optionIndex} className="option-group">
+                    <input
+                      type="text"
+                      placeholder={`Option ${optionIndex + 1}`}
+                      value={option}
+                      onChange={(e) =>
+                        handleOptionChange(
+                          questionIndex,
                           optionIndex,
-                          1
-                        );
-                        setQuestions(newQuestions);
-                      }}
-                    >
-                      ❌
-                    </button>
-                  )}
-                </div>
-              ))}
-  
-              <button
-                type="button"
-                onClick={() => handleAddOption(questionIndex)}
-              >
-                ➕ Add Option
-              </button>
-  
-              <label>Correct Option Index:</label>
-              <input
-                type="number"
-                min="0"
-                max={q.options.length - 1}
-                value={q.correct_index}
-                onChange={(e) => {
-                  const newQuestions = [...questions];
-                  newQuestions[questionIndex].correct_index = parseInt(
-                    e.target.value
-                  );
-                  setQuestions(newQuestions);
-                }}
-                required
-              />
-            </div>
-          ))}
-  
-          <button type="button" onClick={handleAddQuestion}>
-            ➕ Add Question
-          </button>
-          <button type="submit">✅ Create Quiz</button>
-        </form>
-      </div>}
-    
-    </>);
+                          e.target.value
+                        )
+                      }
+                    />
+                    {optionIndex >= 2 && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const newQuestions = [...questions];
+                          newQuestions[questionIndex].options.splice(
+                            optionIndex,
+                            1
+                          );
+                          setQuestions(newQuestions);
+                        }}
+                      >
+                        ❌
+                      </button>
+                    )}
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => handleAddOption(questionIndex)}
+                >
+                  ➕ Add Option
+                </button>
+
+                <label>Correct Option Index:</label>
+                <input
+                  type="number"
+                  min="0"
+                  max={q.options.length - 1}
+                  value={q.correct_index}
+                  onChange={(e) => {
+                    const newQuestions = [...questions];
+                    newQuestions[questionIndex].correct_index = parseInt(
+                      e.target.value
+                    );
+                    setQuestions(newQuestions);
+                  }}
+                  required
+                />
+              </div>
+            ))}
+
+            <button type="button" onClick={handleAddQuestion}>
+              ➕ Add Question
+            </button>
+            {error && <p style={{ color: "red" ,textAlign:"center"}}>{error}</p>}
+
+             <button type="submit">✅ Create Quiz</button>
+          </form>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default CreateQuiz;

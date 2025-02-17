@@ -8,6 +8,8 @@ const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 const EditQuiz = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  
   const { quiz } = location.state; 
 
   const [title, setTitle] = useState(quiz.title);
@@ -18,6 +20,7 @@ const EditQuiz = () => {
     const updatedQuestions = [...questions];
     updatedQuestions[index][key] = value;
     setQuestions(updatedQuestions);
+    setError("");
   };
 
   const addQuestion = () => {
@@ -33,6 +36,21 @@ const EditQuiz = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+     if (title.trim() === "" || description.trim() === "") {
+       setError("Title and Description cannot be empty.");
+       return;
+     }
+
+     for (const question of questions) {
+       if (
+         question.question_text.trim() === "" ||
+         question.options.some((opt) => opt.trim() === "")
+       ) {
+         setError("All questions and options must be filled out properly.");
+         return;
+       }
+     }
 
     axios
       .put(
@@ -157,6 +175,8 @@ const EditQuiz = () => {
         >
           Add Question
         </button>
+        {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+
         <button type="submit" className="edit-quiz-submit-btn">
           Update Quiz
         </button>
