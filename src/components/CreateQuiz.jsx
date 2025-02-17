@@ -2,10 +2,14 @@ import "../styles/createquiz.css"
 import React, { useState } from "react";
 import axios from "axios";
 import CreateLoader from "./CreateLoader";
+import { useNavigate } from "react-router-dom";
 
  const BASE_URL = process.env.REACT_APP_BACKEND_URL;
  
 const CreateQuiz = () => {
+
+  const navigate=useNavigate();
+  
   const [loading,setLoading]=useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -33,10 +37,14 @@ const CreateQuiz = () => {
   };
 
   const handleSubmit = async (e) => {
+
+
     e.preventDefault();
     console.log("title of quiz is ",title);
     console.log("desc of the quiz is ",description);
     console.log("questions of the quiz are",questions);
+
+
     try {
       setLoading(true);
       const response = await axios.post(
@@ -44,22 +52,28 @@ const CreateQuiz = () => {
         { title, description, questions },
         { withCredentials: true }
       );
+
       console.log("Quiz created:", response.data);
+       setLoading(false);
       alert("Quiz created successfully!");
+
       setTitle("");
       setDescription("");
       setQuestions([
         { question_text: "", options: ["", ""], correct_index: 0 },
       ]);
-    } catch (error) {
+
+      navigate("/my-quizzes");
+
+    } 
+    catch (error) {
+      setLoading(false);
       console.error(
         "Error creating quiz:",
         error.response?.data || error.message
       );
     }
-    finally{
-      setLoading(false);
-    }
+     
   };
 
   return (

@@ -24,7 +24,8 @@ const Signup = () => {
              headers: { "Content-Type": "application/json" },
            }
          );
-         navigate("./");
+         alert('Sign up Successful');
+         navigate("../");
          console.log("Signup successful:", response.data);
        } catch (error) {
          console.error("Signup error:", error.response?.data || error.message);
