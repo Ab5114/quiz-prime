@@ -6,7 +6,7 @@ import axios from "axios";
 import "../styles/MyQuizzes.css";
 import Loading from "./Loading.jsx"
  
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = "https://quiz-prime-services-production.up.railway.app";
 
 const MyQuizzes = () => {
   const [quizzes, setQuizzes] = useState([]);

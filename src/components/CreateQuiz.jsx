@@ -4,7 +4,7 @@ import axios from "axios";
 import CreateLoader from "./CreateLoader";
 import { useNavigate } from "react-router-dom";
 
- const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = "https://quiz-prime-services-production.up.railway.app";
  
 const CreateQuiz = () => {
 

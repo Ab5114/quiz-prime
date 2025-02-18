@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/editquiz.css";
 
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = "https://quiz-prime-services-production.up.railway.app";
 
 const EditQuiz = () => {
   const location = useLocation();

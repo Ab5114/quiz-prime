@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Link } from "react-router-dom";
 
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = "https://quiz-prime-services-production.up.railway.app";
 
 const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
  

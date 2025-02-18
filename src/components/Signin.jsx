@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = "https://quiz-prime-services-production.up.railway.app";
 
 const Signin = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
