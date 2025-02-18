@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../styles/Questions.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Questions = () => {
   const location = useLocation();
   const { quiz } = location.state || { quiz: {} };
   const questions = quiz.questions || [];
+  const navigate=useNavigate();
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -24,7 +25,9 @@ const Questions = () => {
       setCurrentQuestion((prev) => prev + 1);
     } else {
       alert(`Quiz finished! Your score: ${score}/${questions.length}`);
+      navigate("/my-quizzes");
     }
+
     setSelectedAnswer(null);
   };
 
